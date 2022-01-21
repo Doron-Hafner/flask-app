@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+{% block search %}
+{{ super() }}
+<div class="container">
+    <h3> {{ info['location'] }} {{ info['country']}}</h3>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Temperature<br><span class="tempmargin">Day</span><span>Night</span></th>
+                <th scope="col">Weather</th>
+                <th scope="col">Humidity</th>
+                <th scope="col"> </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for day in info['daily'] %}
+            <tr>
+                <th scope="row">{{ day['date'] }}</th>
+                <td>
+                    <span class="tempmargin">{{ day['day_temp'] }}&#8451</span>
+                    <span>{{ day['night_temp'] }}&#8451</span>
+                </td>
+                <td>{{ day['main'] }}, {{ day['description'] }}</td>
+                <td>{{ day['humidity'] }}%</td>
+                <td><img src={{ day['icon'] }}></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="container">
+        <form action="/upload" method="get">
+            <button type="submit" class="btn btn-primary">Upload to DB</button>
+        </form>
+    </div>
+</div>
+<style>
+    .tempmargin {margin-right: 25px;}
+    h3{text-align: center;padding: 30px;}
+</style>
+{% endblock %}
