@@ -4,6 +4,7 @@ import requests
 import pycountry
 import boto3
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 api_key = os.environ.get('API_KEY')
@@ -81,4 +82,4 @@ def saveInfoToDB(info):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8880, debug=True)
