@@ -44,9 +44,9 @@ def handle_info(country):
     for day in weather_info[1:]:
         handled_info['daily'].append({
                             'date': datetime.fromtimestamp(day['dt']).strftime('%b %d, %a'),
-                            'day_temp': day['temp']['day'],
-                            'night_temp': day['temp']['day'],
-                            'humidity': day['humidity'],
+                            'day_temp':str( day['temp']['day']),
+                            'night_temp': str(day['temp']['day']),
+                            'humidity': str(day['humidity']),
                             'main': day['weather'][0]['main'],
                             'description': day['weather'][0]['description'],
                             'icon': f"../static/{day['weather'][0]['icon']}.png"})
